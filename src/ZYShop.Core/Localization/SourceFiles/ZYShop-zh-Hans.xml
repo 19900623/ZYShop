@@ -20,6 +20,8 @@
     <text name="LogIn" value="登录" />
     
     <text name="LoginFailed" value="登录失败!" />
-    
+    <text name="ArticleManage" value="文章管理" />
+    <text name="ArticleClass" value="分类管理" />
+
   </texts>
 </localizationDictionary>

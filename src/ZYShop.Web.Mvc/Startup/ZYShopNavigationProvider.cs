@@ -52,6 +52,19 @@ namespace ZYShop.Web.Startup
                         url: "About",
                         icon: "info"
                     )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        "ArticleManage",
+                        L("ArticleManage"),
+                        icon:"menu"
+                        ).AddItem(
+                        new MenuItemDefinition(
+                            "ArticleClass",
+                            L("ArticleClass"),
+                            url:"ArticleClass",
+                            icon:"info"
+                            )
+                        )
                 ).AddItem( // Menu items below is just for demonstration!
                     new MenuItemDefinition(
                         "MultiLevelMenu",
