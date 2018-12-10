@@ -1,0 +1,144 @@
+﻿@using ZYShop.Web.Startup
+@using ZYShop
+@model ZYShop.Web.Models.ArticleClasses.ArticleClassListViewModel
+
+@{
+    ViewBag.CurrentPageName = PageNames.ArticleClass; // The menu item will be active for this page.
+    ViewData["Title"] = "Index";
+}
+@section scripts {
+    <script src="~/view-resources/Views/ArticleClass/Index.js" asp-append-version="true"></script>
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @L("ArticleClass")
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a id="RefreshButton" href="javascript:void(0);" class="waves-effect waves-block"><i class="material-icons">refresh</i>@L("Refresh")</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>@L("Id")</th>
+                            <th>@L("ClassName")</th>
+                            <th>@L("IsSystem")</th>
+                            <th>@L("OrderId")</th>
+                            <th>@L("Actions")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var articleClass in Model.ArticleClasses)
+                        {
+                            <tr>
+                                <td>@articleClass.Id</td>
+                                <td>@articleClass.ClassName</td>
+                                <td>@articleClass.OrderId</td>
+                                <td><i class="material-icons" style="color:@(articleClass.IsSystem == 1 ? "green":"red");">@(articleClass.IsSystem == 1 ? "check_box" : "indeterminate_check_box")</i></td>
+                                <td class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">menu</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="#" class="waves-effect waves-block edit-user" data-articleClass-id="@articleClass.Id" data-toggle="modal" data-target="#ArticleClassEditModal"><i class="material-icons">edit</i>@L("Edit")</a></li>
+                                        <li><a href="#" class="waves-effect waves-block delete-user" data-articleClass-id="@articleClass.Id" data-articleClass-className="@articleClass.ClassName"><i class="material-icons">delete_sweep</i>@L("Delete")</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" data-target="#ArticleClassCreateModal">
+                    <i class="material-icons">add</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ArticleClassCreateModal" tabindex="-1" role="dialog" aria-labelledby="ArticleClassCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span>@L("CreateNewArticleClass")</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form name="ArticleClassCreateForm" role="form" novalidate class="form-validation">
+                    <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                        <li role="presentation" class="active"><a href="#create-user-details" data-toggle="tab">@L("ArticleClassDetails")</a></li>
+                        <li role="presentation"><a href="#create-user-roles" data-toggle="tab">@L("UserRoles")</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane animated fadeIn active" id="create-user-details">
+                            <div class="row clearfix" style="margin-top:10px;">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input class="form-control" type="text" name="ClassName" required maxlength="@ZYShop.ZYShopConsts.MaxLength64" minlength="2">
+                                            <label class="form-label">@L("ClassName")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="Description" class="form-control" required maxlength="@ZYShop.ZYShopConsts.MaxLength256">
+                                            <label class="form-label">@L("Description")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="password" id="OrderId" name="OrderId" class="form-control">
+                                            <label class="form-label">@L("OrderId")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <input type="checkbox" name="IsSystem" value="false" id="IsSystem" class="filled-in" checked />
+                                        <label for="CreateUserIsSystem">@L("IsSystem")</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@L("Cancel")</button>
+                        <button type="submit" class="btn btn-primary waves-effect">@L("Save")</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ArticleClassEditModal" tabindex="-1" role="dialog" aria-labelledby="ArticleClassEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,150 @@
+
+
+<form nz-form #validateForm="ngForm" (ngSubmit)="submitForm()" nzLayout="horizontal" autocomplete="off">
+    <!-- 模态框头部 -->
+    <div class="modal-header">
+        <div class="modal-title">
+            <i class="anticon anticon-medicine-box mr-sm"></i>
+            <span *ngIf="entity.id">{{l('Edit')}}</span>
+            <span *ngIf="!entity.id">{{l('Create')}}</span>
+        </div>
+    </div>
+    <!-- 模态框内容 -->
+    <fieldset>
+        <!-- 提示信息 -->
+        <!-- <nz-alert nzType="info" nzCloseable [nzShowIcon]="true" nzMessage="l('我想提示点什么内容给你说')"></nz-alert> -->
+            <nz-form-item nz-row>
+                    <nz-form-label nz-col [nzSm]="6" [nzXs]="24" nzRequired nzFor="title">{{l('Title')}}</nz-form-label>
+                <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                            <input nz-input name="title" #title="ngModel"
+                                   [(ngModel)]="entity.title"
+                                   [placeholder]="l('Title')"  required  maxlength='64' >
+
+                            <!-- 校验 -->
+                            <nz-form-explain *ngIf="title.control.dirty&&title.control.errors">
+<ng-container *ngIf="title.control.hasError('maxlength')">{{l('超过最大长度')+64}}</ng-container>                                                                <ng-container *ngIf="title.control.hasError('required')">{{l('CanNotNull')}}</ng-container>
+                            </nz-form-explain>
+
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row>
+                    <nz-form-label nz-col [nzSm]="6" [nzXs]="24" nzRequired nzFor="classId">{{l('ClassId')}}</nz-form-label>
+                <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                            <input nz-input name="classId" #classId="ngModel"
+                                   [(ngModel)]="entity.classId"
+                                   [placeholder]="l('ClassId')"  required >
+
+                            <!-- 校验 -->
+                            <nz-form-explain *ngIf="classId.control.dirty&&classId.control.errors">
+                                                                <ng-container *ngIf="classId.control.hasError('required')">{{l('CanNotNull')}}</ng-container>
+                            </nz-form-explain>
+
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="isTop">{{l('IsTop')}}</nz-form-label>
+                <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                            <input nz-input name="isTop" #isTop="ngModel"
+                                   [(ngModel)]="entity.isTop"
+                                   [placeholder]="l('IsTop')" >
+
+
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="author">{{l('Author')}}</nz-form-label>
+                <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                            <input nz-input name="author" #author="ngModel"
+                                   [(ngModel)]="entity.author"
+                                   [placeholder]="l('Author')" >
+
+
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="resource">{{l('Resource')}}</nz-form-label>
+                <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                            <input nz-input name="resource" #resource="ngModel"
+                                   [(ngModel)]="entity.resource"
+                                   [placeholder]="l('Resource')" >
+
+
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="keywords">{{l('Keywords')}}</nz-form-label>
+                <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                            <input nz-input name="keywords" #keywords="ngModel"
+                                   [(ngModel)]="entity.keywords"
+                                   [placeholder]="l('Keywords')" >
+
+
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="url">{{l('Url')}}</nz-form-label>
+                <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                            <input nz-input name="url" #url="ngModel"
+                                   [(ngModel)]="entity.url"
+                                   [placeholder]="l('Url')" >
+
+
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="photo">{{l('Photo')}}</nz-form-label>
+                <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                            <input nz-input name="photo" #photo="ngModel"
+                                   [(ngModel)]="entity.photo"
+                                   [placeholder]="l('Photo')" >
+
+
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="summary">{{l('Summary')}}</nz-form-label>
+                <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                            <input nz-input name="summary" #summary="ngModel"
+                                   [(ngModel)]="entity.summary"
+                                   [placeholder]="l('Summary')" >
+
+
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="content">{{l('Content')}}</nz-form-label>
+                <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                            <input nz-input name="content" #content="ngModel"
+                                   [(ngModel)]="entity.content"
+                                   [placeholder]="l('Content')" >
+
+
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="publishDate">{{l('PublishDate')}}</nz-form-label>
+                <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                            <input nz-input name="publishDate" #publishDate="ngModel"
+                                   [(ngModel)]="entity.publishDate"
+                                   [placeholder]="l('PublishDate')" >
+
+
+                </nz-form-control>
+            </nz-form-item>
+
+    </fieldset>
+    <!-- 模态框底部 -->
+    <div class="modal-footer">
+        <button nz-button [nzType]="'default'" type="button" (click)="close()" [disabled]="saving">
+            <i class="anticon anticon-close-circle-o"></i> {{l("Cancel")}}
+        </button>
+        <button nz-button [nzType]="'primary'" type="submit" [disabled]="!validateForm.form.valid|| saving" [nzLoading]="saving">
+            <i class="anticon anticon-save" *ngIf="!saving"></i> {{l("Save")}}
+        </button>
+    </div>
+</form>
+
+
+
+
+

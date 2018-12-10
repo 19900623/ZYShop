@@ -23,5 +23,28 @@
     <text name="ArticleManage" value="文章管理" />
     <text name="ArticleClass" value="分类管理" />
 
+
+    <!--Article-->
+    <text name="Title"  value="Title"></text>
+    <text name="ClassId"  value="ClassId"></text>
+    <text name="IsTop"  value="IsTop"></text>
+    <text name="Author"  value="Author"></text>
+    <text name="Resource"  value="Resource"></text>
+    <text name="Keywords"  value="Keywords"></text>
+    <text name="Url"  value="Url"></text>
+    <text name="Photo"  value="Photo"></text>
+    <text name="Summary"  value="Summary"></text>
+    <text name="Content"  value="Content"></text>
+    <text name="PublishDate"  value="PublishDate"></text>
+
+    <!--ArticleClass-->
+    <text name="FatherId"  value="FatherId"></text>
+    <text name="OrderId"  value="OrderId"></text>
+    <text name="ClassName"  value="ClassName"></text>
+    <text name="Description"  value="Description"></text>
+    <text name="IsSystem"  value="IsSystem"></text>
+    <text name="CreateNewArticleClass" value="CreateNewArticleClass"></text>
+    <text name="ArticleClassDetails" value="ArticleClassDetails"></text>
+    
   </texts>
 </localizationDictionary>
