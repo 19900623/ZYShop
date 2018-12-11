@@ -1,17 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using ZYShop.Controllers;
+using ZYShop.Web.Models.ArticleClasses;
+using ZYShop.ZYShop.Articles;
+using ZYShop.ZYShop.Articles.Dtos;
 
 namespace ZYShop.Web.Mvc.Controllers
 {
     public class ArticleClassController : ZYShopControllerBase
     {
-        public IActionResult Index()
+        private readonly IArticleClassAppService _articleClassAppService;
+
+        /// <summary>
+        /// 构造注入
+        /// </summary>
+        /// <param name="articleClassAppService"></param>
+        public ArticleClassController(IArticleClassAppService articleClassAppService)
         {
-            return View();
+            _articleClassAppService = articleClassAppService;
+        }
+
+        public async Task<ActionResult> Index()
+        {
+            var articleClassList = (await _articleClassAppService.GetPaged(new GetArticleClasssInput())).Items;
+            var model = new ArticleClassListViewModel
+            {
+                ArticleClasses = articleClassList
+            };
+            return View(model);
         }
     }
 }
