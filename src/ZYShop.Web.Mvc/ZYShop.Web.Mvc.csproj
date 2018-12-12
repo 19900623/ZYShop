@@ -60,4 +60,9 @@
   <ItemGroup>
     <Folder Include="wwwroot\view-resources\Views\_Bundles\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="Views\ArticleClass\_EditArticleClassModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
 </Project>
