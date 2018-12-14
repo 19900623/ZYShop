@@ -45,6 +45,7 @@
     <text name="IsSystem"  value="IsSystem"></text>
     <text name="CreateNewArticleClass" value="CreateNewArticleClass"></text>
     <text name="ArticleClassDetails" value="ArticleClassDetails"></text>
-    
+
+    <text name="EditArticleClass" value="EditArticleClass"></text>
   </texts>
 </localizationDictionary>

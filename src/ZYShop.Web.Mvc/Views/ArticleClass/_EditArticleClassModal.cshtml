@@ -1,20 +1,20 @@
 ﻿@using ZYShop.Web.Models.Common.Modals
-@model ZYShop.Web.Models.Roles.EditRoleModalViewModel
+@model ZYShop.Web.Models.ArticleClasses.EditArticleClassModalViewModel
 @{
     Layout = null;
 }
-@Html.Partial("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditRole")))
+@Html.Partial("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditArticleClass")))
 
 <div class="modal-body">
-    <form name="RoleEditForm" role="form" novalidate class="form-validation">
-        <input type="hidden" name="Id" value="@Model.Role.Id" />
-        <input type="hidden" name="IsStatic" value="@(Model.Role.IsStatic.ToString())" />
+    <form name="ArticleClassEditForm" role="form" novalidate class="form-validation">
+        <input type="hidden" name="Id" value="@Model.ArticleClass.Id" />
+        <input type="hidden" name="IsStatic" value="@(Model.ArticleClass.IsSystem.ToString())" />
         <div class="row clearfix">
             <div class="col-sm-12">
                 <div class="form-group form-float">
                     <div class="form-line">
-                        <input id="rolename" @(Model.Role.IsStatic ? "disabled":"") type="text" name="Name" value="@Model.Role.Name" required maxlength="32" minlength="2" class="validate form-control">
-                        <label for="rolename" class="form-label">@L("RoleName")</label>
+                        <input id="articleClassName" @(Model.ArticleClass.IsSystem == 1 ? "disabled":"") type="text" name="Name" value="@Model.ArticleClass.ClassName" required maxlength="32" minlength="2" class="validate form-control">
+                        <label for="articleClassName" class="form-label">@L("ClassName")</label>
                     </div>
                 </div>
             </div>
@@ -24,8 +24,8 @@
             <div class="col-sm-12">
                 <div class="form-group form-float">
                     <div class="form-line">
-                        <input id="displayname" type="text" name="DisplayName" value="@Model.Role.DisplayName" required maxlength="32" minlength="2" class="validate form-control">
-                        <label for="displayname" class="form-label">@L("DisplayName")</label>
+                        <input id="displayname" type="text" name="DisplayName" value="@Model.ArticleClass.ClassName" required maxlength="32" minlength="2" class="validate form-control">
+                        <label for="displayname" class="form-label">@L("ClassName")</label>
                     </div>
                 </div>
             </div>
@@ -35,24 +35,10 @@
             <div class="col-sm-12">
                 <div class="form-group form-float">
                     <div class="form-line">
-                        <textarea id="role-description" name="Description" class="validate form-control">@Model.Role.Description</textarea>
+                        <textarea id="role-description" name="Description" class="validate form-control">@Model.ArticleClass.Description</textarea>
                         <label for="role-description" class="form-label">@L("RoleDescription")</label>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="row clearfix">
-            <div class="col-sm-12">
-                <h4>@L("Permissions")</h4>
-
-                @foreach (var permission in Model.Permissions)
-                {
-                    <div class="col-sm-6">
-                        <input type="checkbox" name="permission" value="@permission.Name" class="filled-in" id="@string.Format("permission{0}",permission.Name)" @(Model.HasPermission(permission) ? "checked" : "") @(Model.Role.IsStatic ? "disabled" : "") />
-                        <label for="@string.Format("permission{0}",permission.Name)">@permission.DisplayName</label>
-                    </div>
-                }
             </div>
         </div>
     </form>
@@ -60,4 +46,4 @@
 
 @Html.Partial("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
 
-<script src="~/view-resources/Views/Roles/_EditRoleModal.js" asp-append-version="true"></script>
+<script src="~/view-resources/Views/ArticleClass/_EditArticleClassModal.js" asp-append-version="true"></script>

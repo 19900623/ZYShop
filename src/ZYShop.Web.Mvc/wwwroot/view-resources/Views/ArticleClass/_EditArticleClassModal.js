@@ -1,8 +1,8 @@
 ﻿(function ($) {
 
     var _roleService = abp.services.app.role;
-    var _$modal = $('#RoleEditModal');
-    var _$form = $('form[name=RoleEditForm]');
+    var _$modal = $('#ArticleClassEditModal');
+    var _$form = $('form[name=ArticleClassEditForm]');
 
     function save() {
 

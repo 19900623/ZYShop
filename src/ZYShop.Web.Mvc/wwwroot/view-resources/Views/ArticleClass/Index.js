@@ -1,8 +1,8 @@
 ﻿(function () {
     $(function () {
         var _articleClassService = abp.services.app.articleclass;
-        var _$model = $('#ArticleClassCreateModal');
-        var _$form = _$model.find('form');
+        var _$modal = $('#ArticleClassCreateModal');
+        var _$form = _$modal.find('form');
 
         // 表单验证
         _$form.validate({
@@ -41,6 +41,23 @@
             });
         });
 
+        _$form.find('button[type="submit"]').click(function (e) {
+            e.preventDefault();
+            if (!_$form.validate()) {
+                return;
+            }
+
+            var articleClass = _$form.serializeFormToObject();// serializeFormToObject is defined in main.js
+
+            abp.ui.setBusy(_$modal);
+            _articleClassService.createOrUpdate(articleClass).done(function () {
+                _$modal.modal('hide');
+                location.reload(true);
+            }).always(function () {
+                abp.ui.clearBusy(_$modal);
+            });
+
+        });
 
         function refreshArticleClassList() {
             location.reload(true);
